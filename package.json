@@ -4,6 +4,9 @@
   "description": "Noisebridge DAO to empower do-ocratic collaboration",
   "repository": "https://github.com/Make-Noise/noise.git",
   "license": "UNLICENSE",
+  "scripts": {
+    "build": "truffle compile"
+  },
   "dependencies": {
     "truffle": "^5.1.16"
   }
