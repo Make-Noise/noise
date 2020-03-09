@@ -5,10 +5,13 @@
   "repository": "https://github.com/Make-Noise/noise.git",
   "license": "UNLICENSE",
   "scripts": {
-    "build": "truffle compile",
+    "build": "yarn build:sol && yarn build:ts",
+    "build:ts": "tsc -b .",
+    "build:sol": "truffle compile",
     "ganache": "ganache-cli --networkId $npm_package_config_ganache_networkId --mnemonic \"$npm_package_config_ganache_mnemonic\"",
     "lint": "yarn lint:sol",
-    "lint:sol": "solium -d ."
+    "lint:sol": "solium -d .",
+    "test": "truffle test"
   },
   "config": {
     "ganache": {
@@ -16,12 +19,14 @@
       "mnemonic": "present ankle orbit shield primary valley distance decorate diagram enough artwork monster"
     }
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "truffle-typings": "^1.0.8",
+    "typescript": "^3.8.3",
     "eth-gas-reporter": "^0.2.15",
     "ethlint": "^1.2.5",
     "ganache-cli": "^6.9.1",
     "truffle": "^5.1.16",
-    "truffle-test-utils": "^0.1.0",
-    "typescript": "^3.8.3"
+    "truffle-test-utils": "^0.1.0"
   }
 }
