@@ -18,11 +18,8 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
-// const infuraKey = "fj4jll3k.....";
-//
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+// environment variables set in the package config
+var networkId = process.env.npm_package_config_ganache_networkId;
 
 module.exports = {
   /**
@@ -41,12 +38,13 @@ module.exports = {
     // You should run a client (like ganache-cli, geth or parity) in a separate terminal
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
-    //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+
+    development: {
+      host: "127.0.0.1",
+      port: 8545,
+      // value from package.json
+      network_id: process.env.npm_package_config_ganache_networkId,
+     },
 
     // Another network with more advanced options...
     // advanced: {
@@ -79,7 +77,13 @@ module.exports = {
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
-    // timeout: 100000
+    mocha: {
+        reporter: 'eth-gas-reporter',
+        reporterOptions : {
+            currency: 'USD',
+            gasPrice: 2
+        }
+    }
   },
 
   // Configure your compilers
